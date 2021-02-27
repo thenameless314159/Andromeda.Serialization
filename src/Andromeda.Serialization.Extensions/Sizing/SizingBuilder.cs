@@ -24,7 +24,7 @@ namespace Andromeda.Sizing
         public static SizingBuilder CreateFor<T>() where T : SerializationType =>
             new SizingBuilder<T>();
 
-        protected SizingBuilder(SizingMethodBuilder? methodBuilder) =>
+        protected SizingBuilder(SizingMethodBuilder? methodBuilder = default) =>
             MethodBuilder = methodBuilder;
 
         public SizingMethodBuilder? MethodBuilder { get; set; }
