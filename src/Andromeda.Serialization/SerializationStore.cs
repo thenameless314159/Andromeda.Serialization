@@ -45,10 +45,12 @@ namespace Andromeda.Serialization
             private static DeserializerDlg<T>? _deserializer;
             private static SerializerDlg<T>? _serializer;
 
+            // TODO: set after try build
             public static DeserializerDlg<T> CreateDeserializeMethod() { _desAlreadySet = true; return Builder?.BuildDeserialize<T>() 
                 ?? throw new InvalidOperationException("SerializationMethodBuilder is missing from the current " + nameof(SerializationStore<TEndianness>) + "of " + typeof(TEndianness).Name);
             }
 
+            // TODO: set after try build
             public static SerializerDlg<T> CreateSerializeMethod() { _serAlreadySet = true; return Builder?.BuildSerialize<T>() 
                 ?? throw new InvalidOperationException("SerializationMethodBuilder is missing from the current " + nameof(SerializationStore<TEndianness>) + "of " + typeof(TEndianness).Name);
             }

@@ -45,6 +45,7 @@ namespace Andromeda.Sizing
             private static SizeOfDlg<T>? _sizeOfDlg;
             private static int _sizeOf;
 
+            // TODO: set after try build
             public static SizeOfDlg<T> CreateSizeOfMethod() { _isSizeOfDlgAlreadySet = true; return Builder?.BuildSizeOf<T>()
                 ?? throw new InvalidOperationException("SizingMethodBuilder is missing from the current " + nameof(SizingStore<TEndianness>) + "of " + typeof(TEndianness).Name); }
 
