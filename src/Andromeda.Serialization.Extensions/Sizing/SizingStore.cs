@@ -8,8 +8,7 @@ namespace Andromeda.Sizing
     {
         public static SizingMethodBuilder? Builder { get; private set; }
 
-        public static void Setup(SizingMethodBuilder? builder)
-        {
+        public static void Setup(SizingMethodBuilder? builder) {
             if (Builder is not null) return;
             Builder = builder;
         }
@@ -47,7 +46,7 @@ namespace Andromeda.Sizing
             private static int _sizeOf;
 
             public static SizeOfDlg<T> CreateSizeOfMethod() { _isSizeOfDlgAlreadySet = true; return Builder?.BuildSizeOf<T>()
-                ?? throw new InvalidOperationException("SizingMethodBuilder is missing from the current " + nameof(SizingStore<TEndianness>)); }
+                ?? throw new InvalidOperationException("SizingMethodBuilder is missing from the current " + nameof(SizingStore<TEndianness>) + "of " + typeof(TEndianness).Name); }
 
             // trigger get to build from method builder
             public static void Setup() => _ = SizeOf;

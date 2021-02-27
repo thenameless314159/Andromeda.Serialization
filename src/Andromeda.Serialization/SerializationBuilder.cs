@@ -23,7 +23,7 @@ namespace Andromeda.Serialization
         public static SerializationBuilder CreateFor<T>() where T : SerializationType =>
             new SerializationBuilder<T>();
 
-        protected SerializationBuilder(SerializationMethodBuilder? methodBuilder = default) =>
+        protected SerializationBuilder(SerializationMethodBuilder? methodBuilder = null) =>
             MethodBuilder = methodBuilder;
 
         public SerializationMethodBuilder? MethodBuilder { get; set; }
@@ -46,7 +46,6 @@ namespace Andromeda.Serialization
             return this;
         }
 
-        public abstract SerializationBuilder Configure<T>(DeserializerWithPosDlg<T> deserializeMethod);
         public abstract SerializationBuilder Configure<T>(DeserializerDlg<T> deserializeMethod);
         public abstract SerializationBuilder Configure<T>(SerializerDlg<T> serializeMethod);
 

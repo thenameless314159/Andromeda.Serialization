@@ -8,7 +8,7 @@
         public static readonly Other Other = new();
     }
 
-    public class LittleEndian : SerializationType { }
-    public class BigEndian : SerializationType { }
-    public class Other : SerializationType { }
+    public sealed class LittleEndian : SerializationType { }
+    public sealed class BigEndian : SerializationType { }
+    public sealed class Other : SerializationType { }
 }

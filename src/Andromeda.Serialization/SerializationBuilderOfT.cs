@@ -5,11 +5,6 @@ namespace Andromeda.Serialization
     internal sealed class SerializationBuilder<TEndianness> : SerializationBuilder
         where TEndianness : SerializationType
     {
-        public override SerializationBuilder Configure<T>(DeserializerWithPosDlg<T> deserializeMethod) {
-            SerializationStore<TEndianness>.Store<T>.DeserializeWithPos = deserializeMethod;
-            return this;
-        }
-
         public override SerializationBuilder Configure<T>(DeserializerDlg<T> deserializeMethod) {
             SerializationStore<TEndianness>.Store<T>.Deserialize = deserializeMethod;
             return this;

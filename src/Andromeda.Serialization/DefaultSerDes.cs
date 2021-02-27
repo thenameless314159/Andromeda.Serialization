@@ -6,8 +6,7 @@ namespace Andromeda.Serialization
     public class DefaultSerDes : ISerDes
     {
         public DefaultSerDes(IDeserializer des, ISerializer ser) => (_des, _ser) = (des, ser);
-        private readonly IDeserializer _des;
-        private readonly ISerializer _ser;
+        private readonly IDeserializer _des; private readonly ISerializer _ser;
 
         public void Serialize<T>(in T value, ref Span<byte> buffer) => _ser.Serialize(in value, ref buffer);
 
