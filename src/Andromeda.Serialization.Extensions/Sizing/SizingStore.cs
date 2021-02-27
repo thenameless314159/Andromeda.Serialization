@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Andromeda.Serialization;
 
 namespace Andromeda.Sizing
@@ -12,6 +13,10 @@ namespace Andromeda.Sizing
             if (Builder is not null) return;
             Builder = builder;
         }
+
+        public static void SetupStore<T>() => Store<T>.Setup();
+        public static void SetupStoreOf(Type type) => _setupMi.MakeGenericMethod(type).Invoke(null, Array.Empty<object>());
+        private static readonly MethodInfo _setupMi = typeof(SizingStore<TEndianness>).GetMethod(nameof(SetupStore))!;
 
         public static class Store<T>
         {

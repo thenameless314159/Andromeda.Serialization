@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Andromeda.Serialization;
 
 namespace Andromeda.Sizing
@@ -18,23 +17,18 @@ namespace Andromeda.Sizing
             return this;
         }
 
-        private static void SetupStore<T>() => SizingStore<TEndianness>.Store<T>.Setup();
         public override SizingBuilder SetupStoreOf(params Type[] types)
         {
             SizingStore<TEndianness>.Setup(MethodBuilder);
-            var setupMi = typeof(SizingBuilder<TEndianness>).GetMethod(
-                nameof(SetupStore), BindingFlags.NonPublic)!;
-
-            foreach (var type in types) setupMi
-                .MakeGenericMethod(type)
-                .Invoke(this, Array.Empty<object>());
+            foreach (var type in types) SizingStore<TEndianness>
+                .SetupStoreOf(type);
 
             return this;
         }
 
         public override SizingBuilder SetupStoreOf<T>() {
             SizingStore<TEndianness>.Setup(MethodBuilder);
-            SizingStore<TEndianness>.Store<T>.Setup();
+            SizingStore<TEndianness>.SetupStore<T>();
             return this;
         }
 

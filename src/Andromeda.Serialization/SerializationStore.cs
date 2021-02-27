@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Andromeda.Serialization
 {
@@ -12,6 +13,10 @@ namespace Andromeda.Serialization
 
             Builder = builder;
         }
+
+        public static void SetupStore<T>() => Store<T>.Setup();
+        public static void SetupStoreOf(Type type) => _setupMi.MakeGenericMethod(type).Invoke(null, Array.Empty<object>());
+        private static readonly MethodInfo _setupMi = typeof(SerializationStore<TEndianness>).GetMethod(nameof(SetupStore))!;
 
         public static class Store<T>
         {

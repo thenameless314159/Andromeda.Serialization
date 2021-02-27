@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Andromeda.Serialization
 {
@@ -21,16 +20,11 @@ namespace Andromeda.Serialization
             return this;
         }
 
-        private static void SetupStore<T>() => SerializationStore<TEndianness>.Store<T>.Setup();
         public override SerializationBuilder SetupStoreOf(params Type[] types)
         {
             SerializationStore<TEndianness>.Setup(MethodBuilder);
-            var setupMi = typeof(SerializationBuilder<TEndianness>).GetMethod(
-                nameof(SetupStore), BindingFlags.NonPublic)!;
-
-            foreach (var type in types) setupMi
-                .MakeGenericMethod(type)
-                .Invoke(this, Array.Empty<object>());
+            foreach (var type in types) SerializationStore<TEndianness>
+                .SetupStoreOf(type);
 
             return this;
         }
@@ -38,7 +32,7 @@ namespace Andromeda.Serialization
         public override SerializationBuilder SetupStoreOf<T>()
         {
             SerializationStore<TEndianness>.Setup(MethodBuilder);
-            SerializationStore<TEndianness>.Store<T>.Setup();
+            SerializationStore<TEndianness>.SetupStore<T>();
             return this;
         }
 
