@@ -11,12 +11,12 @@ namespace Andromeda.Sizing
             _createForMi.MakeGenericMethod(type.GetType()).Invoke(null, Array.Empty<object>())!;
 
         public static SizingBuilder CreateDefault() => BitConverter.IsLittleEndian
-            ? new SizingBuilder<LittleEndian>()
-            : new SizingBuilder<BigEndian>();
+            ? new SizingBuilder<LittleEndian>().ConfigureDefault()
+            : new SizingBuilder<BigEndian>().ConfigureDefault();
 
         public static SizingBuilder Create(SerializationType type) => type switch {
-            LittleEndian => CreateFor<LittleEndian>(),
-            BigEndian => CreateFor<BigEndian>(),
+            LittleEndian => CreateFor<LittleEndian>().ConfigureDefault(),
+            BigEndian => CreateFor<BigEndian>().ConfigureDefault(),
             Other => CreateFor<Other>(),
             _ => CreateFrom(type)
         };
@@ -28,20 +28,6 @@ namespace Andromeda.Sizing
             MethodBuilder = methodBuilder;
 
         public SizingMethodBuilder? MethodBuilder { get; set; }
-
-        protected SizingBuilder() => Configure<bool>(sizeof(bool))
-            .Configure<char>(sizeof(char))
-            .Configure<byte>(sizeof(byte))
-            .Configure<sbyte>(sizeof(sbyte))
-            .Configure<short>(sizeof(short))
-            .Configure<ushort>(sizeof(ushort))
-            .Configure<int>(sizeof(int))
-            .Configure<uint>(sizeof(uint))
-            .Configure<long>(sizeof(long))
-            .Configure<ulong>(sizeof(ulong))
-            .Configure<float>(sizeof(float))
-            .Configure<double>(sizeof(double))
-            .Configure<decimal>(sizeof(decimal));
 
         public SizingBuilder Use(SizingMethodBuilder builder)
         {
