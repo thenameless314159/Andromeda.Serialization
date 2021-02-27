@@ -9,7 +9,7 @@ namespace Andromeda.Serialization
             value = new T(); return SerializationStore<TEndianness>.Store<T>.Deserialize(this, in buffer, value, out bytesRead);
         }
 
-        public bool TryDeserialize<T>(in ReadOnlySequence<byte> buffer, T value, out long bytesRead) => SerializationStore<LittleEndian>
+        public bool TryDeserialize<T>(in ReadOnlySequence<byte> buffer, T value, out long bytesRead) => SerializationStore<TEndianness>
             .Store<T>.Deserialize(this, in buffer, value, out bytesRead);
 
         public bool TryDeserialize<T>(in ReadOnlySequence<byte> buffer, out T? value, out SequencePosition consumed, 
