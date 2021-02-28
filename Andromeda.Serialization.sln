@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andromeda.Serialization", "src\Andromeda.Serialization\Andromeda.Serialization.csproj", "{90838D53-7923-475F-96AA-B22DBB8CF957}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4980E7E1-70B6-4727-86A7-F839B29451C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Andromeda.Serialization.Extensions", "src\Andromeda.Serialization.Extensions\Andromeda.Serialization.Extensions.csproj", "{0250C6A5-D5D2-49D6-ADCA-523E072C35E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andromeda.Serialization.Extensions", "src\Andromeda.Serialization.Extensions\Andromeda.Serialization.Extensions.csproj", "{4B5A7449-1F66-4D68-B96A-520D4314718D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4980E7E1-70B6-4727-86A7-F839B29451C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +19,17 @@ Global
 		{90838D53-7923-475F-96AA-B22DBB8CF957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90838D53-7923-475F-96AA-B22DBB8CF957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90838D53-7923-475F-96AA-B22DBB8CF957}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B5A7449-1F66-4D68-B96A-520D4314718D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B5A7449-1F66-4D68-B96A-520D4314718D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B5A7449-1F66-4D68-B96A-520D4314718D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B5A7449-1F66-4D68-B96A-520D4314718D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0250C6A5-D5D2-49D6-ADCA-523E072C35E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0250C6A5-D5D2-49D6-ADCA-523E072C35E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0250C6A5-D5D2-49D6-ADCA-523E072C35E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0250C6A5-D5D2-49D6-ADCA-523E072C35E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{90838D53-7923-475F-96AA-B22DBB8CF957} = {4980E7E1-70B6-4727-86A7-F839B29451C0}
-		{4B5A7449-1F66-4D68-B96A-520D4314718D} = {4980E7E1-70B6-4727-86A7-F839B29451C0}
+		{0250C6A5-D5D2-49D6-ADCA-523E072C35E9} = {4980E7E1-70B6-4727-86A7-F839B29451C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E01613FE-28AC-4854-B18F-CF93AEE61E2B}
