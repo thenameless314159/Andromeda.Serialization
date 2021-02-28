@@ -15,10 +15,12 @@ namespace Andromeda.Sizing
             : new SizingBuilder<BigEndian>().ConfigureDefault();
 
         public static SizingBuilder Create(SerializationType type, bool configureDefault = true) => type switch {
-            LittleEndian => configureDefault ? CreateFor<LittleEndian>().ConfigureDefault() : CreateFor<LittleEndian>(),
-            BigEndian => configureDefault ? CreateFor<BigEndian>().ConfigureDefault() : CreateFor<BigEndian>(),
-            Other => configureDefault ? CreateFor<Other>().ConfigureDefault() : CreateFor<Other>(),
-            _ => configureDefault ? CreateFrom(type).ConfigureDefault() : CreateFrom(type)
+            LittleEndian => CreateFor<LittleEndian>(configureDefault),
+            BigEndian => CreateFor<BigEndian>(configureDefault),
+            Other => CreateFor<Other>(configureDefault),
+            _ => configureDefault 
+                ? CreateFrom(type).ConfigureDefault() 
+                : CreateFrom(type)
         };
 
         public static SizingBuilder CreateFor<T>(bool configureDefault = true) where T : SerializationType =>
