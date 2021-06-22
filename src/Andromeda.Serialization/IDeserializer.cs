@@ -17,7 +17,7 @@ namespace Andromeda.Serialization
         T? Deserialize<T>(in ReadOnlySequence<byte> buffer, T value, out long bytesRead) => TryDeserialize(in buffer, value, out bytesRead) ? value : default;
         T? Deserialize<T>(in ReadOnlySequence<byte> buffer, T value) => Deserialize(in buffer, value, out _);
 
-        T? Deserialize<T>(in ReadOnlySequence<byte> buffer, out long bytesRead) where T : new() => TryDeserialize(in buffer, out T value, out bytesRead) ? value : default;
+        T? Deserialize<T>(in ReadOnlySequence<byte> buffer, out long bytesRead) where T : new() => TryDeserialize(in buffer, out T? value, out bytesRead) ? value : default;
         T? Deserialize<T>(in ReadOnlySequence<byte> buffer) where T : new() => Deserialize<T>(in buffer, out _);
     }
 }

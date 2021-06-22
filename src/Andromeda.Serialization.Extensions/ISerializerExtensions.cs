@@ -18,16 +18,16 @@ namespace Andromeda.Serialization
         /// <returns>The number of bytes written in the writer.</returns>
         public static int Serialize<T>(this ISerializer serializer, in T value, IBufferWriter<byte> writer, ISizing sizing)
         {
-            var sizeOf = sizing.SizeOf(in value);
+            var sizeOf = sizing.SizeOf(value);
             var span = writer.GetSpan(sizeOf);
 
             serializer.Serialize(in value, ref span, out var bytesWritten);
             Debug.Assert(bytesWritten == sizeOf, "ISizing.SizeOf<T>() didn't match with the number of bytes written by ISerializer", 
                 "sizeOf={sizeOf}, bytesWritten={bytesWritten}", sizeOf, bytesWritten);
 
-            var cast = (int)bytesWritten;
-            writer.Advance(cast);
-            return cast;
+            var written = (int)bytesWritten;
+            writer.Advance(written);
+            return written;
         }
     }
 }

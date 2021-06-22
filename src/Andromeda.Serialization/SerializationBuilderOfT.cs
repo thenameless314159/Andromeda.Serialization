@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Andromeda.Serialization
 {
     internal sealed class SerializationBuilder<TEndianness> : SerializationBuilder
-        where TEndianness : SerializationType
+        where TEndianness : SerializationType, new()
     {
+        public override SerializationType Endianness { get; } = new TEndianness();
+
         public override SerializationBuilder Configure<T>(DeserializerDlg<T> deserializeMethod) {
             SerializationStore<TEndianness>.Store<T>.Deserialize = deserializeMethod;
             return this;
@@ -18,9 +21,7 @@ namespace Andromeda.Serialization
         public override SerializationBuilder SetupStoreOf(params Type[] types)
         {
             SerializationStore<TEndianness>.Setup(MethodBuilder);
-            foreach (var type in types) SerializationStore<TEndianness>
-                .SetupStoreOf(type);
-
+            Parallel.ForEach(types, SerializationStore<TEndianness>.SetupStoreOf);
             return this;
         }
 

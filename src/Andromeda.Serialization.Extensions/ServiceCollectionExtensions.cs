@@ -56,7 +56,7 @@ namespace Andromeda.Serialization
         }
 
         public static IServiceCollection AddSerializationFor<TEndianness>(this IServiceCollection services, Action<SerializationBuilder> configure, 
-            bool registerSerDesOnly = false) where TEndianness : SerializationType
+            bool registerSerDesOnly = false) where TEndianness : SerializationType, new()
         {
             var builder = SerializationBuilder.CreateFor<TEndianness>();
             configure(builder);
