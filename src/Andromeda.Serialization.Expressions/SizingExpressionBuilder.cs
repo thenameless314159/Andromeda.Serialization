@@ -22,7 +22,7 @@ namespace Andromeda.Serialization.Expressions
             expression.SetupSizeOfExpressionTree();
             BuildSizeOfExpressionOf<T>(expression);
 
-            if (!expression.Any()) expression.EmitReturnZero();
+            if (expression.Count < 1) expression.EmitReturnZero();
             _beforeCompile?.Invoke(expression.Build());
             return expression.Compile();
         }

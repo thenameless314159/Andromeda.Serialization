@@ -12,6 +12,5 @@ namespace Andromeda.Serialization.Expressions.Internal
         public static readonly Type Deserializer = typeof(IDeserializer);
         public static readonly Type SizingInterface = typeof(ISizing);
         public static readonly Type Serializer = typeof(ISerializer);
-        public static readonly Type Int = typeof(int);
     }
 }

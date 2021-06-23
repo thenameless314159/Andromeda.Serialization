@@ -1,8 +1,8 @@
 ﻿using Andromeda.Serialization.Expressions.Internal;
 using System.Linq.Expressions;
 using Andromeda.Expressions;
-using System;
 using System.Linq;
+using System;
 
 namespace Andromeda.Serialization.Expressions
 {
@@ -21,7 +21,7 @@ namespace Andromeda.Serialization.Expressions
             var expression = _exprBuilderFactory.Create<DeserializerDlg<T>>();
             expression.SetupDeserializeExpressionTree();
             BuildDeserializeExpressionOf<T>(expression);
-            if (expression.Count() == 1) expression
+            if (expression.Count == 1) expression
                 .EmitReturnFalse();
 
             _beforeCompile?.Invoke(expression.Build());
