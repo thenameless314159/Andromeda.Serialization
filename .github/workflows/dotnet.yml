@@ -23,10 +23,6 @@ jobs:
     - name: dotnet pack
       run: dotnet pack Andromeda.Serialization.sln -c Release --no-build --output .
 
-    - name: push serialization
+    - name: push packages
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: dotnet nuget push Andromeda.Serialization.*.*.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
-    
-    - name: push extensions
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: dotnet nuget push Andromeda.Serialization.Extensions.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      run: dotnet nuget push Andromeda.Serialization.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
