@@ -21,9 +21,10 @@ namespace Andromeda.Serialization
             public static DeserializerDlg<T> Deserialize
             {
                 get => _deserializer ??= CreateDeserializeMethod();
-                set
-                {
-                    if (_desAlreadySet) throw new InvalidOperationException($"Another deserialization method for {typeof(T).Name} has already been registered !");
+                set {
+                    if (_desAlreadySet) throw new InvalidOperationException(
+                        $"Another deserialization method for {typeof(T).Name} has already been registered !");
+
                     _deserializer = value;
                     _desAlreadySet = true;
                 }
@@ -32,12 +33,12 @@ namespace Andromeda.Serialization
             public static SerializerDlg<T> Serialize
             {
                 get => _serializer ??= CreateSerializeMethod();
-                set
-                {
-                    
-                    if (_serAlreadySet) throw new InvalidOperationException($"Another serialization method for {typeof(T).Name} has already been registered !");
-                    _serAlreadySet = true;
+                set {
+                    if (_serAlreadySet) throw new InvalidOperationException(
+                        $"Another serialization method for {typeof(T).Name} has already been registered !");
+
                     _serializer = value;
+                    _serAlreadySet = true;
                 }
             }
             

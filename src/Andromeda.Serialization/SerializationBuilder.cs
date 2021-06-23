@@ -20,11 +20,13 @@ namespace Andromeda.Serialization
             _ => CreateFrom(type)
         };
 
-        public static SerializationBuilder CreateFor<T>() where T : SerializationType =>
+        public static SerializationBuilder CreateFor<T>() where T : SerializationType, new() =>
             new SerializationBuilder<T>();
 
         protected SerializationBuilder(SerializationMethodBuilder? methodBuilder = null) =>
             MethodBuilder = methodBuilder;
+
+        public abstract SerializationType Endianness { get; }
 
         public SerializationMethodBuilder? MethodBuilder { get; set; }
 

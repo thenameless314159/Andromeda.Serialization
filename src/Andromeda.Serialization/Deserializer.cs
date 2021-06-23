@@ -17,35 +17,35 @@ namespace Andromeda.Serialization
         {
             value = new T();
 
-            if (!SerializationStore<TEndianness>.Store<T>.Deserialize(this, in buffer, value, out var bytesRead))
-            {
-                var position = buffer.GetPosition(bytesRead);
+            // TODO: Use GetPosition instead of slicing ?
+            if (!SerializationStore<TEndianness>.Store<T>.Deserialize(this, in buffer, value, out var bytesRead)) {
+                var remaining = buffer.Slice(bytesRead);
+                examined = remaining.Start;
                 consumed = buffer.Start;
-                examined = position;
                 value = default;
                 return false;
             }
 
-            var pos = buffer.GetPosition(bytesRead);
-            consumed = pos;
-            examined = pos;
+            var rem = buffer.Slice(bytesRead);
+            consumed = rem.Start;
+            examined = rem.Start;
             return true;
         }
 
         public bool TryDeserialize<T>(in ReadOnlySequence<byte> buffer, T value, out SequencePosition consumed,
             out SequencePosition examined)
         {
-            if (!SerializationStore<TEndianness>.Store<T>.Deserialize(this, in buffer, value, out var bytesRead))
-            {
-                var position = buffer.GetPosition(bytesRead);
+            // TODO: Use GetPosition instead of slicing ?
+            if (!SerializationStore<TEndianness>.Store<T>.Deserialize(this, in buffer, value, out var bytesRead)) {
+                var remaining = buffer.Slice(bytesRead);
+                examined = remaining.Start;
                 consumed = buffer.Start;
-                examined = position;
                 return false;
             }
 
-            var pos = buffer.GetPosition(bytesRead);
-            consumed = pos;
-            examined = pos;
+            var rem = buffer.Slice(bytesRead);
+            consumed = rem.Start;
+            examined = rem.Start;
             return true;
         }
     }

@@ -18,7 +18,7 @@ namespace Andromeda.Serialization
         /// <returns>The number of bytes written in the writer.</returns>
         public static int Serialize<T>(this IBufferWriter<byte> writer, in T value, ISerializer serializer, ISizing sizing)
         {
-            var sizeOf = sizing.SizeOf(in value);
+            var sizeOf = sizing.SizeOf(value);
             var span = writer.GetSpan(sizeOf);
 
             serializer.Serialize(in value, ref span, out var bytesWritten);
