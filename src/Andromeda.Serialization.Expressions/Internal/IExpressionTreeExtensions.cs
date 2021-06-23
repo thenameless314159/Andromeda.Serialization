@@ -1,8 +1,9 @@
-﻿using static Andromeda.Serialization.Expressions.Internal.SerializationConstants;
+﻿using static Andromeda.Serialization.Expressions.Internal.CommonTypes;
 using static System.Linq.Expressions.Expression;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using Andromeda.Expressions;
+using Andromeda.Sizing;
 
 namespace Andromeda.Serialization.Expressions.Internal
 {
@@ -17,6 +18,10 @@ namespace Andromeda.Serialization.Expressions.Internal
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IExpressionTreeBuilder<SerializerDlg<T>> SetupSerializeExpressionTree<T>(this IExpressionTreeBuilder<SerializerDlg<T>> expr) =>
             expr.SetupSerializeExpressionTree(out _, out _, out _, out _);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IExpressionTreeBuilder<SizeOfDlg<T>> SetupSizeOfExpressionTree<T>(this IExpressionTreeBuilder<SizeOfDlg<T>> expr) =>
+            expr.SetupSizeOfExpressionTree(out _, out _);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IExpressionTreeBuilder<DeserializerDlg<T>> SetupDeserializeExpressionTree<T>(this IExpressionTreeBuilder<DeserializerDlg<T>> expr,
@@ -43,6 +48,14 @@ namespace Andromeda.Serialization.Expressions.Internal
                 .Parameter(LongByRef, nameof(bytesWritten), out bytesWritten);
 
             expr.Emit(Assign(bytesWritten, _zero));
+            return expr;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IExpressionTreeBuilder<SizeOfDlg<T>> SetupSizeOfExpressionTree<T>(this IExpressionTreeBuilder<SizeOfDlg<T>> expr,
+            out ParameterExpression sizing, out ParameterExpression value)
+        {
+            expr.Parameter(SizingInterface, nameof(sizing), out sizing).Parameter(typeof(T), nameof(value), out value);
             return expr;
         }
     }

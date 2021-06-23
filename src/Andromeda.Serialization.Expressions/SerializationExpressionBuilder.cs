@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using Andromeda.Expressions;
 using System;
+using System.Linq;
 
 namespace Andromeda.Serialization.Expressions
 {
@@ -20,7 +21,8 @@ namespace Andromeda.Serialization.Expressions
             var expression = _exprBuilderFactory.Create<DeserializerDlg<T>>();
             expression.SetupDeserializeExpressionTree();
             BuildDeserializeExpressionOf<T>(expression);
-            expression.EmitReturnTrue();
+            if (expression.Count() == 1) expression
+                .EmitReturnFalse();
 
             _beforeCompile?.Invoke(expression.Build());
             return expression.Compile();

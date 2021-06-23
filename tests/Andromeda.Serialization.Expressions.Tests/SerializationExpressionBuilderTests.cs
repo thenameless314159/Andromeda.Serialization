@@ -17,7 +17,7 @@ namespace Andromeda.Serialization.Expressions.Tests
         private readonly SerializationExpressionBuilder _exprBuilder;
 
         [Fact]
-        public void BuildDeserialize_OutputMethodShouldReturnTrueByDefault() => Assert.True(_exprBuilder
+        public void BuildDeserialize_OutputMethodShouldReturnFalseByDefault() => Assert.False(_exprBuilder
             .BuildDeserialize<SerializableModel>()(null!, ReadOnlySequence<byte>.Empty, 
                 new SerializableModel(), out _));
 
