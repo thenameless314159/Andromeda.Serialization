@@ -21,7 +21,7 @@ namespace Andromeda.Serialization
             var sizeOf = sizing.SizeOf(value);
             var span = writer.GetSpan(sizeOf);
 
-            serializer.Serialize(in value, ref span, out var bytesWritten);
+            serializer.Serialize(in value, in span, out var bytesWritten);
             Debug.Assert(bytesWritten == sizeOf, "ISizing.SizeOf<T>() didn't match with the number of bytes written by ISerializer",
                 "sizeOf={sizeOf}, bytesWritten={bytesWritten}", sizeOf, bytesWritten);
 

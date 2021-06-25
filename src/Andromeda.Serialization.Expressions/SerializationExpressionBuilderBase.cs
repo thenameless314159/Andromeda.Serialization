@@ -1,14 +1,13 @@
 ﻿using Andromeda.Serialization.Expressions.Internal;
 using System.Linq.Expressions;
 using Andromeda.Expressions;
-using System.Linq;
 using System;
 
 namespace Andromeda.Serialization.Expressions
 {
-    public abstract class SerializationExpressionBuilder : SerializationMethodBuilder
+    public abstract class SerializationExpressionBuilderBase : SerializationMethodBuilder
     {
-        protected SerializationExpressionBuilder(IExpressionTreeBuilderFactory exprBuilderFactory) =>
+        protected SerializationExpressionBuilderBase(IExpressionTreeBuilderFactory exprBuilderFactory) =>
             _exprBuilderFactory = exprBuilderFactory;
 
         private readonly IExpressionTreeBuilderFactory _exprBuilderFactory;

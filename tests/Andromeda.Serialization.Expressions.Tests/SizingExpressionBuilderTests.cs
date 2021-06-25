@@ -1,10 +1,4 @@
-﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 using Xunit.Abstractions;
 
 namespace Andromeda.Serialization.Expressions.Tests
@@ -18,7 +12,7 @@ namespace Andromeda.Serialization.Expressions.Tests
         {
         }
 
-        private readonly SizingExpressionBuilder _exprBuilder;
+        private readonly SizingExpressionBuilderBase _exprBuilder;
 
         [Fact]
         public void BuildSizeOf_OutputMethodShouldReturnZeroByDefault()

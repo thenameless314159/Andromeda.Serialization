@@ -6,7 +6,7 @@ using FastExpressionCompiler;
 
 namespace Andromeda.Serialization.Expressions.Tests
 {
-    public class TestSerializationExpressionBuilder : SerializationExpressionBuilder
+    public class TestSerializationExpressionBuilder : SerializationExpressionBuilderBase
     {
         public TestSerializationExpressionBuilder(ITestOutputHelper logger, bool useFastExprCompiler)
             : base(useFastExprCompiler 

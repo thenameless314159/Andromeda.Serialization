@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Andromeda.Serialization.Expressions.Tests
 {
-    public class TestSizingExpressionBuilder : SizingExpressionBuilder
+    public class TestSizingExpressionBuilder : SizingExpressionBuilderBase
     {
         public TestSizingExpressionBuilder(ITestOutputHelper logger, bool useFastExprCompiler)
             : base(useFastExprCompiler

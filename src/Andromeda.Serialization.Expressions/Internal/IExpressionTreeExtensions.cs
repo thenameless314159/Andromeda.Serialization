@@ -9,7 +9,8 @@ namespace Andromeda.Serialization.Expressions.Internal
 {
     internal static class IExpressionTreeExtensions
     {
-        private static readonly ConstantExpression _zero = Constant((long)0, typeof(long));
+        private static readonly ConstantExpression _zeroInt = Constant(0, typeof(int));
+        private static readonly ConstantExpression _zeroLong = Constant((long)0, typeof(long));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IExpressionTreeBuilder<DeserializerDlg<T>> SetupDeserializeExpressionTree<T>(this IExpressionTreeBuilder<DeserializerDlg<T>> expr) =>
@@ -33,7 +34,7 @@ namespace Andromeda.Serialization.Expressions.Internal
                 .Parameter(typeof(T), nameof(value), out value)
                 .Parameter(LongByRef, nameof(bytesRead), out bytesRead);
 
-            expr.Emit(Assign(bytesRead, _zero));
+            expr.Emit(Assign(bytesRead, _zeroLong));
             return expr;
         }
 
@@ -45,9 +46,9 @@ namespace Andromeda.Serialization.Expressions.Internal
             expr.Parameter(Serializer, nameof(serializer), out serializer)
                 .Parameter(SpanByRef, nameof(buffer), out buffer)
                 .Parameter(typeof(T), nameof(value), out value)
-                .Parameter(LongByRef, nameof(bytesWritten), out bytesWritten);
+                .Parameter(IntByRef, nameof(bytesWritten), out bytesWritten);
 
-            expr.Emit(Assign(bytesWritten, _zero));
+            expr.Emit(Assign(bytesWritten, _zeroInt));
             return expr;
         }
 
@@ -55,7 +56,7 @@ namespace Andromeda.Serialization.Expressions.Internal
         public static IExpressionTreeBuilder<SizeOfDlg<T>> SetupSizeOfExpressionTree<T>(this IExpressionTreeBuilder<SizeOfDlg<T>> expr,
             out ParameterExpression sizing, out ParameterExpression value)
         {
-            expr.Parameter(SizingInterface, nameof(sizing), out sizing).Parameter(typeof(T), nameof(value), out value);
+            expr.Parameter(SizingInterface, nameof(sizing), out sizing).Parameter(typeof(T).MakeByRefType(), nameof(value), out value);
             return expr;
         }
     }

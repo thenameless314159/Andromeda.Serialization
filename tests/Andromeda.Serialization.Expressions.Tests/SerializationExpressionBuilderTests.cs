@@ -14,7 +14,7 @@ namespace Andromeda.Serialization.Expressions.Tests
         {
         }
 
-        private readonly SerializationExpressionBuilder _exprBuilder;
+        private readonly SerializationExpressionBuilderBase _exprBuilder;
 
         [Fact]
         public void BuildDeserialize_OutputMethodShouldReturnFalseByDefault() => Assert.False(_exprBuilder
@@ -32,8 +32,8 @@ namespace Andromeda.Serialization.Expressions.Tests
         [Fact]
         public void BuildSerialize_ShouldCreateValidExpressionByDefault()
         {
-            var serialize = _exprBuilder.BuildSerialize<SerializableModel>(); var emptySpan = Span<byte>.Empty;
-            serialize(null!, ref emptySpan, new SerializableModel(), out var bytesWritten);
+            var serialize = _exprBuilder.BuildSerialize<SerializableModel>();
+            serialize(null!, Span<byte>.Empty, new SerializableModel(), out var bytesWritten);
             Assert.Equal(0, bytesWritten);
         }
     }

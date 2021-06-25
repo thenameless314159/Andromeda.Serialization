@@ -8,10 +8,10 @@ namespace Andromeda.Serialization
         public DefaultSerDes(IDeserializer des, ISerializer ser) => (_des, _ser) = (des, ser);
         private readonly IDeserializer _des; private readonly ISerializer _ser;
 
-        public void Serialize<T>(in T value, ref Span<byte> buffer) => _ser.Serialize(in value, ref buffer);
+        public void Serialize<T>(in T value, in Span<byte> buffer) => _ser.Serialize(in value, in buffer);
 
-        public void Serialize<T>(in T value, ref Span<byte> buffer, out long bytesWritten) =>
-            _ser.Serialize(in value, ref buffer, out bytesWritten);
+        public void Serialize<T>(in T value, in Span<byte> buffer, out int bytesWritten) =>
+            _ser.Serialize(in value, in buffer, out bytesWritten);
 
         public bool TryDeserialize<T>(in ReadOnlySequence<byte> buffer, out T? value, out SequencePosition consumed, 
             out SequencePosition examined) where T : new() => _des.TryDeserialize(in buffer, out value, out consumed, out examined);

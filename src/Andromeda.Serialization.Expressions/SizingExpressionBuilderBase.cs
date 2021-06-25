@@ -3,13 +3,12 @@ using System.Linq.Expressions;
 using Andromeda.Expressions;
 using Andromeda.Sizing;
 using System;
-using System.Linq;
 
 namespace Andromeda.Serialization.Expressions
 {
-    public abstract class SizingExpressionBuilder : SizingMethodBuilder
+    public abstract class SizingExpressionBuilderBase : SizingMethodBuilder
     {
-        protected SizingExpressionBuilder(IExpressionTreeBuilderFactory exprBuilderFactory) =>
+        protected SizingExpressionBuilderBase(IExpressionTreeBuilderFactory exprBuilderFactory) =>
             _exprBuilderFactory = exprBuilderFactory;
 
         private readonly IExpressionTreeBuilderFactory _exprBuilderFactory;
