@@ -2,11 +2,11 @@
 
   <PropertyGroup>
 	  <Nullable>enable</Nullable>
-	  <Version>0.2.1</Version>
-	  <FileVersion>0.2.1.0</FileVersion>
+	  <Version>0.2.2</Version>
+	  <FileVersion>0.2.2.0</FileVersion>
 	  <Authors>thenameless314159</Authors>
 	  <TargetFramework>net5.0</TargetFramework>
-	  <AssemblyVersion>0.2.1.0</AssemblyVersion>
+	  <AssemblyVersion>0.2.2.0</AssemblyVersion>
 	  <PackageIcon>andromeda_icon1.png</PackageIcon>
 	  <Copyright>Copyright 2021 thenameless314159</Copyright>
 	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

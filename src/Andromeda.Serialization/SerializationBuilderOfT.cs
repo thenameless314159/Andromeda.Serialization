@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Andromeda.Serialization
@@ -18,9 +19,15 @@ namespace Andromeda.Serialization
             return this;
         }
 
-        public override SerializationBuilder SetupStoreOf(params Type[] types)
+        public override SerializationBuilder SetupStoreOf(IEnumerable<Type> types, bool parallelSetup = false) 
         {
             SerializationStore<TEndianness>.Setup(MethodBuilder);
+
+            if (!parallelSetup) {
+                foreach (var type in types) SerializationStore<TEndianness>.SetupStoreOf(type);
+                return this;
+            }
+
             Parallel.ForEach(types, SerializationStore<TEndianness>.SetupStoreOf);
             return this;
         }

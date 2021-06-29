@@ -25,7 +25,7 @@ namespace Andromeda.Serialization
                 value = default;
                 return false;
             }
-
+            
             var rem = buffer.Slice(bytesRead);
             consumed = rem.Start;
             examined = rem.Start;
