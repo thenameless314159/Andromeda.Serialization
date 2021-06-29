@@ -2,8 +2,8 @@
 
   <PropertyGroup>
 	  <Nullable>Enable</Nullable>
-	  <Version>1.0.9</Version>
-	  <FileVersion>1.0.9.0</FileVersion>
+	  <Version>1.1.0</Version>
+	  <FileVersion>1.1.0.0</FileVersion>
 	  <Authors>thenameless314159</Authors>
 	  <TargetFramework>net5.0</TargetFramework>
 	  <AssemblyVersion>1.0.9.0</AssemblyVersion>

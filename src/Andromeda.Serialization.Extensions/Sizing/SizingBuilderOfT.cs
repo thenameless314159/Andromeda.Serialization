@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Andromeda.Serialization;
 
 namespace Andromeda.Sizing
@@ -17,12 +19,15 @@ namespace Andromeda.Sizing
             return this;
         }
 
-        public override SizingBuilder SetupStoreOf(params Type[] types)
+        public override SizingBuilder SetupStoreOf(IEnumerable<Type> types, bool parallelSetup = false)
         {
             SizingStore<TEndianness>.Setup(MethodBuilder);
-            foreach (var type in types) SizingStore<TEndianness>
-                .SetupStoreOf(type);
+            if (!parallelSetup) {
+                foreach (var type in types) SizingStore<TEndianness>.SetupStoreOf(type);
+                return this;
+            }
 
+            Parallel.ForEach(types, SizingStore<TEndianness>.SetupStoreOf);
             return this;
         }
 

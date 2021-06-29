@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Andromeda.Serialization;
 
@@ -58,8 +59,9 @@ namespace Andromeda.Sizing
         /// of this instance.
         /// </summary>
         /// <param name="types">The types to setup.</param>
+        /// <param name="parallelSetup">Whether the store should be setup using parallel invocation or not.</param>
         /// <returns>The self instance to allow call chaining.</returns>
-        public abstract SizingBuilder SetupStoreOf(params Type[] types);
+        public abstract SizingBuilder SetupStoreOf(IEnumerable<Type> types, bool parallelSetup = false);
 
         /// <summary>
         /// Call this method before calling Build() if you want to setup the store of the
