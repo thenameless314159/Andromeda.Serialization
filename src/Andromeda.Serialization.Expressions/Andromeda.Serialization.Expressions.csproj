@@ -17,10 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Andromeda.Expressions" Version="1.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Andromeda.Serialization.Extensions\Andromeda.Serialization.Extensions.csproj" />
+    <PackageReference Include="Andromeda.Serialization.Extensions" Version="1.1.0" />
   </ItemGroup>
 
 	<ItemGroup>
